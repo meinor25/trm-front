@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme static {
+  --font-sans: 'Geist Sans', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+
+  /* 🔴 Brand (principal) */
+  --color-brand-50: #fff1f2;
+  --color-brand-100: #ffe0e3;
+  --color-brand-200: #ffb8c0;
+  --color-brand-300: #ff8a97;
+  --color-brand-400: #ff5a6f;
+  --color-brand-500: #f8314a; /* 🔥 rojo principal (más fuerte) */
+  --color-brand-600: #e11b37;
+  --color-brand-700: #b90f2b;
+  --color-brand-800: #970a25;
+  --color-brand-900: #7f0a22;
+  --color-brand-950: #460311;
+
+  /* ⚫ Grises neutros */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* ✨ Estados */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+}
