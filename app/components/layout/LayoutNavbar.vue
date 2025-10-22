@@ -15,7 +15,7 @@ const links = ref<NavigationMenuItem[]>([
 </script>
 
 <template>
-  <header class="w-full border-b border-gray-200 bg-background">
+  <header class="w-full border-b border-gray-200 dark:border-gray-600">
     <div
       class="container mx-auto flex h-[70px] items-center justify-between gap-6 px-6"
     >
@@ -23,10 +23,10 @@ const links = ref<NavigationMenuItem[]>([
       <NuxtLink to="/" class="flex items-center gap-2.5">
         <Icon name="lucide:music" class="h-8 w-8 text-primary" />
         <div class="flex flex-col">
-          <span class="text-sm font-semibold tracking-tight"
+          <span class="text-sm lg:text-xl font-semibold tracking-tight"
             >Karaoke Jamming</span
           >
-          <span class="text-[10px]">by TRM</span>
+          <span class="text-xs lg:text-sm">by TRM</span>
         </div>
       </NuxtLink>
 
@@ -36,16 +36,19 @@ const links = ref<NavigationMenuItem[]>([
 
       <!-- Action Buttons -->
       <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
-        <button
+        <UButton
+          to="/auth/login"
           class="hidden sm:inline-flex h-11 px-5 items-center justify-center font-medium transition-colors"
+          variant="link"
         >
-          Sign In
-        </button>
-        <button
+          Iniciar Sesion
+        </UButton>
+        <UButton
+          to="/auth/register"
           class="h-11 px-5 inline-flex items-center justify-center text-[15px] font-semibold bg-primary text-white rounded-lg hover:opacity-90 transition-opacity shadow-sm"
         >
-          Join as Musician
-        </button>
+          Unirse
+        </UButton>
         <UColorModeButton />
       </div>
 

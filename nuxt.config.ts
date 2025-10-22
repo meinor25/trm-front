@@ -7,6 +7,17 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui'],
+  app: {
+    head: {
+      titleTemplate: '%s | Karaoke Jamming by TRM',
+    },
+  },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL,
+    },
+  },
+
   components: [
     {
       path: '~/components',

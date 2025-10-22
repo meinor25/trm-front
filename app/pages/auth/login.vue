@@ -5,6 +5,8 @@ definePageMeta({
   layout: 'auth',
 })
 
+const { login } = useAuth()
+
 const fields: AuthFormField[] = [
   {
     name: 'email',
@@ -33,6 +35,11 @@ const schema = z.object({
     .string('La contraseña es requerida')
     .min(8, 'La contraseña debe tener al menos 8 caracteres'),
 })
+
+const onSubmit = async (values: any) => {
+  console.log(values.data)
+  await login('ofi', 'chata')
+}
 </script>
 <template>
   <div class="text-center mb-10">
@@ -44,7 +51,7 @@ const schema = z.object({
     description="Inicia sesión para continuar"
     class="w-full max-w-xl"
   >
-    <UAuthForm :schema="schema" :fields="fields" />
+    <UAuthForm :schema="schema" :fields="fields" @submit="onSubmit" />
   </UPageCard>
   <div class="flex mt-10 items-center">
     <p>¿No tienes una cuenta?</p>

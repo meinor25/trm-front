@@ -1,7 +1,9 @@
 <template>
   <main>
     <LayoutNavbar />
-    <slot />
+    <div class="min-h-screen">
+      <slot />
+    </div>
   </main>
 </template>
 

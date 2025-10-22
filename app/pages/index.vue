@@ -1,9 +1,12 @@
+<script setup lang="ts">
+const colorMode = useColorMode()
+console.log(useRuntimeConfig().public.apiUrl)
+useHead({
+  title: 'Inicio',
+})
+</script>
 <template>
   <LandingHero />
 </template>
-
-<script setup lang="ts">
-const colorMode = useColorMode()
-</script>
 
 <style scoped></style>
