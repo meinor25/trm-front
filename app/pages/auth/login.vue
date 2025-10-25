@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import type { AuthFormField } from '@nuxt/ui'
+import type { AuthFormField, FormSubmitEvent } from '@nuxt/ui'
 import * as z from 'zod'
 definePageMeta({
   layout: 'auth',
+})
+
+useHead({
+  title: 'Iniciar Sesion',
 })
 
 const { login } = useAuth()
@@ -34,11 +38,14 @@ const schema = z.object({
   password: z
     .string('La contraseña es requerida')
     .min(8, 'La contraseña debe tener al menos 8 caracteres'),
+  remember: z.boolean().optional(),
 })
 
-const onSubmit = async (values: any) => {
-  console.log(values.data)
-  await login('ofi', 'chata')
+type FormData = z.infer<typeof schema>
+const onSubmit = async (payload: FormSubmitEvent<FormData>) => {
+  const { email, password, remember } = payload.data
+  console.log(payload.data)
+  await login(email, password, remember)
 }
 </script>
 <template>

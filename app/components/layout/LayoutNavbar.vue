@@ -2,6 +2,8 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
 const drawer = ref(false)
 
+const { user, logout } = useAuth()
+
 const links = ref<NavigationMenuItem[]>([
   {
     to: '/faq',
@@ -12,6 +14,8 @@ const links = ref<NavigationMenuItem[]>([
     label: 'Eventos',
   },
 ])
+
+const showLogout = ref(false)
 </script>
 
 <template>
@@ -36,19 +40,60 @@ const links = ref<NavigationMenuItem[]>([
 
       <!-- Action Buttons -->
       <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
-        <UButton
-          to="/auth/login"
-          class="hidden sm:inline-flex h-11 px-5 items-center justify-center font-medium transition-colors"
-          variant="link"
-        >
-          Iniciar Sesion
-        </UButton>
-        <UButton
-          to="/auth/register"
-          class="h-11 px-5 inline-flex items-center justify-center text-[15px] font-semibold bg-primary text-white rounded-lg hover:opacity-90 transition-opacity shadow-sm"
-        >
-          Unirse
-        </UButton>
+        <template v-if="user">
+          <UUser
+            :name="user.name"
+            :avatar="{
+              src: user.profile_photo,
+            }"
+          />
+          <UDropdownMenu
+            :items="[
+              {
+                label: 'Cerrar Sesion',
+                icon: 'i-lucide-log-out',
+                onClick: () => (showLogout = true),
+              },
+            ]"
+          >
+            <UButton
+              icon="lucide:chevron-down"
+              color="neutral"
+              variant="ghost"
+            />
+          </UDropdownMenu>
+          <UModal title="Cerrar Sesion" v-model:open="showLogout">
+            <template #body>
+              <div
+                class="flex flex-col p-10 items-center space-y-5 justify-center"
+              >
+                <Icon name="ph:warning" class="h-12 w-12 text-warning" />
+                <p>¿Estas seguro de que quieres cerrar sesion?</p>
+                <UButton
+                  label="Confirmar"
+                  color="primary"
+                  variant="solid"
+                  @click="logout"
+                />
+              </div>
+            </template>
+          </UModal>
+        </template>
+        <template v-else>
+          <UButton
+            to="/auth/login"
+            class="hidden sm:inline-flex h-11 px-5 items-center justify-center font-medium transition-colors"
+            variant="link"
+          >
+            Iniciar Sesion
+          </UButton>
+          <UButton
+            to="/auth/register"
+            class="h-11 px-5 inline-flex items-center justify-center text-[15px] font-semibold bg-primary text-white rounded-lg hover:opacity-90 transition-opacity shadow-sm"
+          >
+            Unirse
+          </UButton>
+        </template>
         <UColorModeButton />
       </div>
 
