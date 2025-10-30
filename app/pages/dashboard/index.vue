@@ -1,7 +1,12 @@
+<script setup lang="ts">
+definePageMeta({
+  layout: 'dashboard',
+})
+</script>
 <template>
-  <div></div>
+  <div>
+    <h2>Dashboard</h2>
+  </div>
 </template>
-
-<script setup></script>
 
 <style lang="scss" scoped></style>
